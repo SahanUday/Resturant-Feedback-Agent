@@ -1,5 +1,6 @@
-import from utils { analyzing, response_generator, save_to_csv, get_dates, generate_summary, filter_feedback }
+# import from utils { analyzing, response_generator, save_to_csv, get_dates, generate_summary, filter_feedback }
 import from datetime { date }
+include utils;
 
 node Sentiment {
     has sen: str;
@@ -25,7 +26,7 @@ walker analyzer {
     }
 
     can start with `root entry {
-
+        
         response = analyzing(self.feedback);
         reply = response_generator(feedback=self.feedback, sentiment=response.sentiment, urgency=response.urgency, category=response.category);
 
