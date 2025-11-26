@@ -1,0 +1,5 @@
+date,feedback,sentiment,urgency,category
+2025-11-26,Amazing service and delicious noodles!,positive,low,Food Quality
+2025-11-26,Absolutely loved the food today!,positive,low,Food Quality
+2025-11-26,Everything was perfect. Thank you!,positive,low,Other
+2025-11-26,Worst food I've had in a long time.,negative,medium,Food Quality
