@@ -1,0 +1,23 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    padding: 40px;
+    min-width: 400px;
+    text-align: center;
+}
+
+.title {
+    font-size: 2rem;
+    color: #667eea;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
