@@ -1,0 +1,182 @@
+/* pageStyle */
+
+.app-page {
+  min-height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+/* Same as layoutStyle() */
+.app-layout {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  gap: 24px;
+}
+
+/* Main column container (mainColumnStyle) */
+.main-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Same as cardBaseStyle() */
+.card {
+  background-color: #020617;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 14px 45px rgba(15, 23, 42, 0.65);
+  box-sizing: border-box;
+  border: 1px solid #1f2937;
+}
+
+/* updated cardBaseStyle() */
+.newcard {
+  padding: 16px;
+}
+
+/* Same as sectionTitleStyle() */
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e5e7eb;
+  margin-bottom: 4px;
+}
+
+/* Same as sectionSubtitleStyle() */
+.section-subtitle {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+/* Same as primaryButtonStyle() */
+.btn-primary {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background-image: linear-gradient(135deg, #22c55e, #059669);
+  color: #f9fafb;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.35);
+}
+
+/* Stat label text (uppercased small heading) */
+.stat-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-bottom: 6px;
+}
+
+/* Stat value number */
+.stat-value {
+  font-size: 26px;
+  font-weight: 700;
+  color: #e5e7eb;
+  margin-bottom: 4px;
+}
+
+/* Grid for the three sentiment cards */
+.sentiment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+/* Summary text box inside the summary card */
+.summary-box {
+  border-radius: 12px;
+  border: 1px solid #1f2937;
+  padding: 16px;
+  background-image: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 1),
+    rgba(15, 23, 42, 0.9)
+  );
+  font-size: 14px;
+  color: #e5e7eb;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+/* Main column container (mainColumnStyle) */
+.main-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* Main column container (mainColumnStyle) */
+.main-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* Header row container */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Header title/subtitle in the top bar */
+.header-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f9fafb;
+  margin-bottom: 4px;
+}
+
+.header-subtitle {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+
+
+/* Dropdown (time range) */
+.range-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+  outline: none;
+  cursor: pointer;
+}
+
+
+/* Wrapper for the Generate Summary button */
+.button-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #0f172a;
+}
