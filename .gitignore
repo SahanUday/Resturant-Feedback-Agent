@@ -3,3 +3,5 @@ app.session.bak
 app.session.dat
 app.session.dir
 app.session.users.json
+*.csv
+scr/*

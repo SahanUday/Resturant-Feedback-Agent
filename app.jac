@@ -1,6 +1,6 @@
-# import from utils { analyzing, response_generator, save_to_csv, get_dates, generate_summary, filter_feedback }
+import from utils { analyzing, response_generator, save_to_csv, get_dates, generate_summary, filter_feedback }
 import from datetime { date }
-include utils;
+# include utils;
 
 node Sentiment {
     has sen: str;
@@ -27,33 +27,33 @@ walker analyzer {
 
     can start with `root entry {
         
-        response = analyzing(self.feedback);
-        reply = response_generator(feedback=self.feedback, sentiment=response.sentiment, urgency=response.urgency, category=response.category);
+        analisis = analyzing(self.feedback);
+        print(analisis);    
+        reply = response_generator(feedback=self.feedback, sentiment=analisis.sentiment, urgency=analisis.urgency, category=analisis.category);
+        print(reply);
 
         today = date.today().strftime("%m/%d/%Y") ;
 
-        if [root->:Id: date==today:->(`?Sentiment: sen==response.sentiment)]{
-            log = [->:Id: date==today:->(`?Sentiment: sen==response.sentiment)][0];
-            log+>:Category(cat=response.category):+> Feedback(fed=self.feedback);
-            report "Existing entry updated.";
+        if [root->:Id: date==today:->(`?Sentiment: sen==analisis.sentiment)]{
+            log = [->:Id: date==today:->(`?Sentiment: sen==analisis.sentiment)][0];
+            log+>:Category(cat=analisis.category):+> Feedback(fed=self.feedback);
+            # report "Existing entry updated.";
     
         } else {
-            new_sen_node = root +>:Id(date=today):+> Sentiment(sen=response.sentiment);
-            new_feedback_node = new_sen_node +>:Category(cat=response.category):+> Feedback(fed=self.feedback);
+            new_sen_node = root +>:Id(date=today):+> Sentiment(sen=analisis.sentiment);
+            new_feedback_node = new_sen_node +>:Category(cat=analisis.category):+> Feedback(fed=self.feedback);
      
         }
  
         # report {
-        #     "sentiment": response.sentiment,
-        #     "urgency": response.urgency,
-        #     "category": response.category,
+        #     "sentiment": analisis.sentiment,
+        #     "urgency": analisis.urgency,
+        #     "category": analisis.category,
         #     "date": str(today),
         # };
-        save_to_csv(feedback=self.feedback, sentiment=response.sentiment, urgency=response.urgency, category=response.category);
+        save_to_csv(feedback=self.feedback, sentiment=analisis.sentiment, urgency=analisis.urgency, category=analisis.category);
 
-        report {
-            "reply": reply,
-        };
+        report reply;
 
 
     }
@@ -109,3 +109,4 @@ walker summerize {
         
     }
 }
+
