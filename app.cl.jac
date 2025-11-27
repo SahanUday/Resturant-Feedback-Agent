@@ -158,7 +158,7 @@ def app -> Any {
     async def computeAnswer() -> None {
         setLoading(true);
         setAnswer("");
-        response = root spawn analyzer(feedback={input});
+        response = root spawn analyzer(feedback=input);
         result = response.reports;
         setAnswer(result);
         setLoading(false);
