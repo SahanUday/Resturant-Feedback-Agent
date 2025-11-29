@@ -80,7 +80,8 @@ def filter_feedback(start_date_str: str, end_date_str: str) -> dict {
 """You are an expert summary generator. Your task is to generate a concise and informative summary of customer feedback for a restaurant based on the provided feedbacks(positive, negative, neutral). Get the feedbacks from the given date range using tool.
 Highlight key strengths and urgent issues. Summarize the overall customer sentiment trend, notable positives, and areas needing immediate attention.
 Generate summery as paragraphs with clear headings for each sentiment category.
-Add last paragraph by including overall overveiw of the summarize"""
+Add last paragraph by including overall overveiw of the summarize
+I want to show this summary in JS frontend so make sure summary include plain text including paragraphs and highlighting topics."""
 def generate_summary(start_date_str: str, end_date_str: str) -> str by llm(method="ReAct", tools=([filter_feedback])) ;
 
 
