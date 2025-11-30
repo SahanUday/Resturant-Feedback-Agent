@@ -99,11 +99,9 @@
   border-radius: 12px;
   border: 1px solid #1f2937;
   padding: 16px;
-  background-image: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 1),
-    rgba(15, 23, 42, 0.9)
-  );
+  background-image: linear-gradient(135deg,
+      rgba(15, 23, 42, 1),
+      rgba(15, 23, 42, 0.9));
   font-size: 14px;
   color: #e5e7eb;
   min-height: 80px;
@@ -179,4 +177,51 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   background-color: #0f172a;
+}
+
+/* Page container */
+.pageC {
+  min-height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px;
+  font-family: system-ui, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Main content wrapper */
+.contentSt {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header-rowNew {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-titleNew {
+  font-size: 18px;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.header-subtitleNew {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.card-base {
+  background-color: #020617;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 14px 45px rgba(15, 23, 42, 0.65);
+  box-sizing: border-box;
+  border: 1px solid #1f2937;
 }
