@@ -1,24 +1,23 @@
-cl import from react {
-useState,
-useEffect
-}
+cl import from react { useState, useEffect }
 
 cl import from "@jac-client/utils" {
-Router,
-Routes,
-Route,
-Link,
-Navigate,
-useNavigate,
-jacSignup,
-jacLogin,
-jacLogout,
-jacIsLoggedIn
+    Router,
+    Routes,
+    Route,
+    Link,
+    Navigate,
+    useNavigate,
+    jacSignup,
+    jacLogin,
+    jacLogout,
+    jacIsLoggedIn
 }
 
 import ".cstyles.css";
 import ".adstyles.css";
+import ".homestyle.css";
 
+# Navigation
 # Navigation
 def Navigation()  -> any {
     let isLoggedIn = jacIsLoggedIn();
@@ -34,7 +33,7 @@ def Navigation()  -> any {
         return <nav
             style={{
                 "padding": "12px 24px",
-                "background": "#3b82f6",
+                "background": "linear-gradient(90deg,#020617,#0b1120,#020617)",
                 "color": "#ffffff",
                 "display": "flex",
                 "justifyContent": "space-between"
@@ -43,17 +42,11 @@ def Navigation()  -> any {
             <div
                 style={{"fontWeight": "600"}}
             >
-                Todo App
+                KAMRA 
             </div>
             <div
                 style={{"display": "flex", "gap": "16px"}}
             >
-                # <Link
-                #     to="/Customer"
-                #     style={{"color": "#ffffff", "textDecoration": "none"}}
-                # >
-                #     Todos
-                # </Link>
                 <button
                     onClick={handleLogout}
                     style={{
@@ -71,10 +64,11 @@ def Navigation()  -> any {
         </nav>;
     }
 
+    # Not logged in: just show the title bar, no buttons
     return <nav
         style={{
             "padding": "12px 24px",
-            "background": "#3b82f6",
+            "background": "linear-gradient(90deg,#020617,#0b1120,#020617)",
             "color": "#ffffff",
             "display": "flex",
             "justifyContent": "space-between"
@@ -83,26 +77,12 @@ def Navigation()  -> any {
         <div
             style={{"fontWeight": "600"}}
         >
-            Todo App
+            KAMRA
         </div>
-        <div
-            style={{"display": "flex", "gap": "16px"}}
-        >
-            <Link
-                to="/login"
-                style={{"color": "#ffffff", "textDecoration": "none"}}
-            >
-                Login
-            </Link>
-            <Link
-                to="/signup"
-                style={{"color": "#ffffff", "textDecoration": "none"}}
-            >
-                Sign Up
-            </Link>
-        </div>
+        <div />
     </nav>;
 }
+
 
 # CustomerLogin Page
 def CustomerLoginPage()  -> any {
@@ -118,7 +98,8 @@ def CustomerLoginPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        success = await jacLogin(username, password);
+        customerUsername = f"cust:{username}";
+        success = await jacLogin(customerUsername, password);
         if success {
             navigate("/Customer");
         } else {
@@ -137,7 +118,7 @@ def CustomerLoginPage()  -> any {
     let errorDisplay = None;
     if error {
         errorDisplay = <div
-            style={{"color": "#dc2626", "fontSize": "14px", "marginBottom": "10px"}}
+            style={{"color": "#fca5a5", "fontSize": "14px", "marginBottom": "10px"}}
         >
             {error}
         </div>;
@@ -149,20 +130,24 @@ def CustomerLoginPage()  -> any {
             "display": "flex",
             "alignItems": "center",
             "justifyContent": "center",
-            "background": "#f5f5f5"
+            "backgroundImage": "linear-gradient(135deg,#020617,#020617,#0f172a)",
+            "padding": "24px"
         }}
     >
         <div
             style={{
-                "background": "#ffffff",
-                "padding": "30px",
-                "borderRadius": "8px",
-                "width": "280px",
-                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
+                "background": "#020617",
+                "padding": "32px 28px",
+                "borderRadius": "18px",
+                "width": "320px",
+                "boxShadow": "0 20px 45px rgba(15,23,42,0.9)",
+                "border": "1px solid #1f2937",
+                "color": "#e5e7eb",
+                "boxSizing": "border-box"
             }}
         >
             <h2
-                style={{"marginBottom": "20px"}}
+                style={{"marginBottom": "20px", "fontSize": "22px", "fontWeight": "700"}}
             >
                 Login
             </h2>
@@ -176,11 +161,14 @@ def CustomerLoginPage()  -> any {
                     placeholder="Username"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 <input
@@ -190,11 +178,14 @@ def CustomerLoginPage()  -> any {
                     placeholder="Password"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 {errorDisplay}
@@ -202,13 +193,16 @@ def CustomerLoginPage()  -> any {
                     type="submit"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
-                        "background": "#3b82f6",
-                        "color": "#ffffff",
+                        "padding": "10px",
+                        "backgroundImage": "linear-gradient(135deg,#22c55e,#0ea5e9)",
+                        "color": "#f9fafb",
                         "border": "none",
-                        "borderRadius": "4px",
+                        "borderRadius": "999px",
                         "cursor": "pointer",
-                        "fontWeight": "600"
+                        "fontWeight": "600",
+                        "fontSize": "14px",
+                        "marginTop": "4px",
+                        "boxShadow": "0 12px 30px rgba(34,197,94,0.45)"
                     }}
                 >
                     Login
@@ -217,18 +211,23 @@ def CustomerLoginPage()  -> any {
             <p
                 style={{
                     "textAlign": "center",
-                    "marginTop": "12px",
-                    "fontSize": "14px"
+                    "marginTop": "16px",
+                    "fontSize": "13px",
+                    "color": "#9ca3af"
                 }}
             >
-                Need an account?
-                <Link to="/customersignup">
+                Need an account?{" "}
+                <Link
+                    to="/customersignup"
+                    style={{"color": "#38bdf8", "textDecoration": "none", "fontWeight": "500"}}
+                >
                     Sign up
                 </Link>
             </p>
         </div>
     </div>;
 }
+
 
 # AdminLogin Page
 def AdminLoginPage()  -> any {
@@ -244,7 +243,8 @@ def AdminLoginPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        success = await jacLogin(username, password);
+        adminUsername = f"admin:{username}";
+        success = await jacLogin(adminUsername, password);
         if success {
             navigate("/Admin");
         } else {
@@ -263,7 +263,7 @@ def AdminLoginPage()  -> any {
     let errorDisplay = None;
     if error {
         errorDisplay = <div
-            style={{"color": "#dc2626", "fontSize": "14px", "marginBottom": "10px"}}
+            style={{"color": "#fca5a5", "fontSize": "14px", "marginBottom": "10px"}}
         >
             {error}
         </div>;
@@ -275,20 +275,24 @@ def AdminLoginPage()  -> any {
             "display": "flex",
             "alignItems": "center",
             "justifyContent": "center",
-            "background": "#f5f5f5"
+            "backgroundImage": "linear-gradient(135deg,#020617,#020617,#0f172a)",
+            "padding": "24px"
         }}
     >
         <div
             style={{
-                "background": "#ffffff",
-                "padding": "30px",
-                "borderRadius": "8px",
-                "width": "280px",
-                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
+                "background": "#020617",
+                "padding": "32px 28px",
+                "borderRadius": "18px",
+                "width": "320px",
+                "boxShadow": "0 20px 45px rgba(15,23,42,0.9)",
+                "border": "1px solid #1f2937",
+                "color": "#e5e7eb",
+                "boxSizing": "border-box"
             }}
         >
             <h2
-                style={{"marginBottom": "20px"}}
+                style={{"marginBottom": "20px", "fontSize": "22px", "fontWeight": "700"}}
             >
                 Login
             </h2>
@@ -302,11 +306,14 @@ def AdminLoginPage()  -> any {
                     placeholder="Username"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 <input
@@ -316,11 +323,14 @@ def AdminLoginPage()  -> any {
                     placeholder="Password"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 {errorDisplay}
@@ -328,13 +338,16 @@ def AdminLoginPage()  -> any {
                     type="submit"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
-                        "background": "#3b82f6",
-                        "color": "#ffffff",
+                        "padding": "10px",
+                        "backgroundImage": "linear-gradient(135deg,#22c55e,#0ea5e9)",
+                        "color": "#f9fafb",
                         "border": "none",
-                        "borderRadius": "4px",
+                        "borderRadius": "999px",
                         "cursor": "pointer",
-                        "fontWeight": "600"
+                        "fontWeight": "600",
+                        "fontSize": "14px",
+                        "marginTop": "4px",
+                        "boxShadow": "0 12px 30px rgba(34,197,94,0.45)"
                     }}
                 >
                     Login
@@ -343,18 +356,23 @@ def AdminLoginPage()  -> any {
             <p
                 style={{
                     "textAlign": "center",
-                    "marginTop": "12px",
-                    "fontSize": "14px"
+                    "marginTop": "16px",
+                    "fontSize": "13px",
+                    "color": "#9ca3af"
                 }}
             >
-                Need an account?
-                <Link to="/adminsignup">
+                Need an account?{" "}
+                <Link
+                    to="/adminsignup"
+                    style={{"color": "#38bdf8", "textDecoration": "none", "fontWeight": "500"}}
+                >
                     Sign up
                 </Link>
             </p>
         </div>
     </div>;
 }
+
 
 # CustomerSignup Page
 def CustomerSignupPage()  -> any {
@@ -370,7 +388,8 @@ def CustomerSignupPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        result = await jacSignup(username, password);
+        customerUsername = f"cust:{username}";
+        result = await jacSignup(customerUsername, password);
         if result["success"] {
             navigate("/Customer");
         } else {
@@ -389,7 +408,7 @@ def CustomerSignupPage()  -> any {
     let errorDisplay = None;
     if error {
         errorDisplay = <div
-            style={{"color": "#dc2626", "fontSize": "14px", "marginBottom": "10px"}}
+            style={{"color": "#fca5a5", "fontSize": "14px", "marginBottom": "10px"}}
         >
             {error}
         </div>;
@@ -401,20 +420,24 @@ def CustomerSignupPage()  -> any {
             "display": "flex",
             "alignItems": "center",
             "justifyContent": "center",
-            "background": "#f5f5f5"
+            "backgroundImage": "linear-gradient(135deg,#020617,#020617,#0f172a)",
+            "padding": "24px"
         }}
     >
         <div
             style={{
-                "background": "#ffffff",
-                "padding": "30px",
-                "borderRadius": "8px",
-                "width": "280px",
-                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
+                "background": "#020617",
+                "padding": "32px 28px",
+                "borderRadius": "18px",
+                "width": "320px",
+                "boxShadow": "0 20px 45px rgba(15,23,42,0.9)",
+                "border": "1px solid #1f2937",
+                "color": "#e5e7eb",
+                "boxSizing": "border-box"
             }}
         >
             <h2
-                style={{"marginBottom": "20px"}}
+                style={{"marginBottom": "20px", "fontSize": "22px", "fontWeight": "700"}}
             >
                 Sign Up
             </h2>
@@ -428,11 +451,14 @@ def CustomerSignupPage()  -> any {
                     placeholder="Username"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 <input
@@ -442,11 +468,14 @@ def CustomerSignupPage()  -> any {
                     placeholder="Password"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 {errorDisplay}
@@ -454,13 +483,16 @@ def CustomerSignupPage()  -> any {
                     type="submit"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
-                        "background": "#3b82f6",
-                        "color": "#ffffff",
+                        "padding": "10px",
+                        "backgroundImage": "linear-gradient(135deg,#22c55e,#0ea5e9)",
+                        "color": "#f9fafb",
                         "border": "none",
-                        "borderRadius": "4px",
+                        "borderRadius": "999px",
                         "cursor": "pointer",
-                        "fontWeight": "600"
+                        "fontWeight": "600",
+                        "fontSize": "14px",
+                        "marginTop": "4px",
+                        "boxShadow": "0 12px 30px rgba(34,197,94,0.45)"
                     }}
                 >
                     Sign Up
@@ -469,18 +501,23 @@ def CustomerSignupPage()  -> any {
             <p
                 style={{
                     "textAlign": "center",
-                    "marginTop": "12px",
-                    "fontSize": "14px"
+                    "marginTop": "16px",
+                    "fontSize": "13px",
+                    "color": "#9ca3af"
                 }}
             >
-                Have an account?
-                <Link to="/customerlogin">
+                Have an account?{" "}
+                <Link
+                    to="/customerlogin"
+                    style={{"color": "#38bdf8", "textDecoration": "none", "fontWeight": "500"}}
+                >
                     Customer Login
                 </Link>
             </p>
         </div>
     </div>;
 }
+
 
 # AdminSignup Page
 def AdminSignupPage()  -> any {
@@ -496,7 +533,8 @@ def AdminSignupPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        result = await jacSignup(username, password);
+        adminUsername = f"admin:{username}";
+        result = await jacSignup(adminUsername, password);
         if result["success"] {
             navigate("/Admin");
         } else {
@@ -515,7 +553,7 @@ def AdminSignupPage()  -> any {
     let errorDisplay = None;
     if error {
         errorDisplay = <div
-            style={{"color": "#dc2626", "fontSize": "14px", "marginBottom": "10px"}}
+            style={{"color": "#fca5a5", "fontSize": "14px", "marginBottom": "10px"}}
         >
             {error}
         </div>;
@@ -527,20 +565,24 @@ def AdminSignupPage()  -> any {
             "display": "flex",
             "alignItems": "center",
             "justifyContent": "center",
-            "background": "#f5f5f5"
+            "backgroundImage": "linear-gradient(135deg,#020617,#020617,#0f172a)",
+            "padding": "24px"
         }}
     >
         <div
             style={{
-                "background": "#ffffff",
-                "padding": "30px",
-                "borderRadius": "8px",
-                "width": "280px",
-                "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
+                "background": "#020617",
+                "padding": "32px 28px",
+                "borderRadius": "18px",
+                "width": "320px",
+                "boxShadow": "0 20px 45px rgba(15,23,42,0.9)",
+                "border": "1px solid #1f2937",
+                "color": "#e5e7eb",
+                "boxSizing": "border-box"
             }}
         >
             <h2
-                style={{"marginBottom": "20px"}}
+                style={{"marginBottom": "20px", "fontSize": "22px", "fontWeight": "700"}}
             >
                 Sign Up
             </h2>
@@ -554,11 +596,14 @@ def AdminSignupPage()  -> any {
                     placeholder="Username"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 <input
@@ -568,11 +613,14 @@ def AdminSignupPage()  -> any {
                     placeholder="Password"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
+                        "padding": "10px",
                         "marginBottom": "10px",
-                        "border": "1px solid #ddd",
-                        "borderRadius": "4px",
-                        "boxSizing": "border-box"
+                        "border": "1px solid #374151",
+                        "borderRadius": "8px",
+                        "boxSizing": "border-box",
+                        "backgroundColor": "#020617",
+                        "color": "#e5e7eb",
+                        "fontSize": "14px"
                     }}
                 />
                 {errorDisplay}
@@ -580,13 +628,16 @@ def AdminSignupPage()  -> any {
                     type="submit"
                     style={{
                         "width": "100%",
-                        "padding": "8px",
-                        "background": "#3b82f6",
-                        "color": "#ffffff",
+                        "padding": "10px",
+                        "backgroundImage": "linear-gradient(135deg,#22c55e,#0ea5e9)",
+                        "color": "#f9fafb",
                         "border": "none",
-                        "borderRadius": "4px",
+                        "borderRadius": "999px",
                         "cursor": "pointer",
-                        "fontWeight": "600"
+                        "fontWeight": "600",
+                        "fontSize": "14px",
+                        "marginTop": "4px",
+                        "boxShadow": "0 12px 30px rgba(34,197,94,0.45)"
                     }}
                 >
                     Sign Up
@@ -595,12 +646,16 @@ def AdminSignupPage()  -> any {
             <p
                 style={{
                     "textAlign": "center",
-                    "marginTop": "12px",
-                    "fontSize": "14px"
+                    "marginTop": "16px",
+                    "fontSize": "13px",
+                    "color": "#9ca3af"
                 }}
             >
-                Have an account?
-                <Link to="/adminlogin">
+                Have an account?{" "}
+                <Link
+                    to="/adminlogin"
+                    style={{"color": "#38bdf8", "textDecoration": "none", "fontWeight": "500"}}
+                >
                     Admin Login
                 </Link>
             </p>
@@ -608,8 +663,8 @@ def AdminSignupPage()  -> any {
     </div>;
 }
 
+
 # def AutoReplyCard(props: any) -> any {
-    
 
 #     return <div className="cardbase-style">
 #         <h2 className="section-title">Automatic reply</h2>
@@ -639,7 +694,7 @@ def AdminSignupPage()  -> any {
 #             Tell us about your visit so we can improve our restaurant service.
 #         </p>
 
-#         <label className="review-label">   
+#         <label className="review-label">
 #             Your review
 #         </label>
 
@@ -663,15 +718,10 @@ def AdminSignupPage()  -> any {
 #         </div>
 #     </div>;
 # }
-
 def Customer -> any {
-
-
-
     let [answer, setAnswer] = useState("");
     let [input, setInput] = useState("");
     let [loading, setLoading] = useState(false); 
-
 
     async def computeAnswer() -> None {
         setLoading(true);
@@ -681,17 +731,23 @@ def Customer -> any {
         setAnswer(result);
         setLoading(false);
     }
-    
 
-    return <div className="app-container">
-        <div className="app-layout">
-            <ReviewInputCard input={input} setInput={setInput} computeAnswer={computeAnswer} />
-            <AutoReplyCard answer={answer} loading={loading} />
+    return <div className="customer-page">
+        <div className="customer-column">
+            <ReviewInputCard
+                input={input}
+                setInput={setInput}
+                computeAnswer={computeAnswer}
+            />
+            <AutoReplyCard
+                answer={answer}
+                loading={loading}
+            />
         </div>
     </div>;
 }
 
-cl def Admin() -> any {
+cl def Admin()  -> any {
     let [range, setRange] = useState("Last 3 Days");
     let [positive_count, setPositiveCount] = useState([]);
     let [negative_count, setNegativeCount] = useState([]);
@@ -704,26 +760,24 @@ cl def Admin() -> any {
     let [data, setData] = useState([]);
 
     let [summary, setSummary] = useState("");
-    let [loading, setLoading] = useState(false); 
+    let [loading, setLoading] = useState(false);
 
+    # let headerRowStyle = {
+    #     "display": "flex",
+    #     "justifyContent": "space-between",
+    #     "alignItems": "center"
+    # };
 
-    let headerRowStyle = {
-        "display": "flex",
-        "justifyContent": "space-between",
-        "alignItems": "center"
-    };
+    # let titleStyle = {
+    #     "fontSize": "18px",
+    #     "fontWeight": "600",
+    #     "color": "#e5e7eb"
+    # };
 
-    let titleStyle = {
-        "fontSize": "18px",
-        "fontWeight": "600",
-        "color": "#e5e7eb"
-    };
-
-    let subtitleStyle = {
-        "fontSize": "12px",
-        "color": "#9ca3af"
-    };
-
+    # let subtitleStyle = {
+    #     "fontSize": "12px",
+    #     "color": "#9ca3af"
+    # };
     async def get_data(e: str) -> any {
         setRange(e.target.value);
         response = root spawn grt_counts(range_option=e.target.value);
@@ -740,77 +794,80 @@ cl def Admin() -> any {
 
         let data_list = [];
         let lent = result["dates"].length;
-        console.log("lent",lent);
+        console.log("lent", lent);
         let num = 0;
         while (num < lent) {
             console.log("num", num);
             console.log("date", result["dates"][num]);
-            d = {"date": result["dates"][num], "Positive": result["positive_count"][num], "Negative": result["negative_count"][num], "Neutral": result["neutral_count"][num]};
+            d = {
+                "date": result["dates"][num],
+                "Positive": result["positive_count"][num],
+                "Negative": result["negative_count"][num],
+                "Neutral": result["neutral_count"][num]
+            };
             data_list.push(d);
             num = num + 1;
         }
         setData(data_list);
-
     }
 
-    async def gen_summary() -> str {
+    async def gen_summary()  -> str {
         setLoading(true);
         summ = root spawn summerize(range_option=range);
         result = summ.reports[0];
         setSummary(result["summary"]);
         setLoading(false);
-    
     }
 
-    return <div style={pageStyle()}>
-        <div style={contentStyle()}>
-
-            <div style={headerRowStyle}>
+    return <div className="pageC">
+        <div className="contentC">
+            <div className="header-rowNew"
+            style={{"marginBottom": "16px"}}
+            >
                 <div>
-                    <div style={titleStyle}>
+                    <div className="header-titleNew">
                         Comment activity graph
                     </div>
-                    <div style={subtitleStyle}>
+                    <div className="header-subtitleNew">
                         Visualise positive, negative and neutral comments over time.
                     </div>
                 </div>
-
                 <select
                     value={range}
-                    # onChange={lambda e: any -> None { setRange(e.target.value); }}
-                    onChange={lambda e: any -> None { get_data(e); }}
-                    style={{
-                        "padding": "8px 12px",
-                        "borderRadius": "8px",
-                        "fontSize": "13px",
-                        "fontWeight": "500",
-                        "backgroundColor": "#020617",
-                        "color": "#e5e7eb",
-                        "border": "1px solid #374151",
-                        "outline": "none",
-                        "cursor": "pointer"
-                    }}
+                    onChange={lambda  e: any  -> None{ get_data(e);} }
+                    className="range-select"
                 >
-                    <option value="Last 3 Days">Last 3 Days</option>
-                    <option value="Last 7 Days">Last 7 Days</option>
-                    <option value="Last 30 Days">Last 30 Days</option>
+                    <option value="Last 3 Days">
+                        Last 3 Days
+                    </option>
+                    <option value="Last 7 Days">
+                        Last 7 Days
+                    </option>
+                    <option value="Last 30 Days">
+                        Last 30 Days
+                    </option>
                 </select>
             </div>
-
-            <div style={cardBaseStyle()}>
-                <StatsRow range={range} 
-                    foodValue={food_quality_count} 
-                    deliveryValue={delivery_count} 
-                    pricingValue={pricing_count} 
-                    otherValue={other_count} 
+            <div className="card-base">
+                <StatsRow
+                    range={range}
+                    foodValue={food_quality_count}
+                    deliveryValue={delivery_count}
+                    pricingValue={pricing_count}
+                    otherValue={other_count}
                 />
-                <SentimentBarChart chartdata={data} />
+                <SentimentBarChart
+                    chartdata={data}
+                />
             </div>
-            <div style={cardBaseStyle()}>
-                <SummaryCard summary={summary} loading={loading} />
+            <div className="card-base">
+                <SummaryCard
+                    summary={summary}
+                    loading={loading}
+                />
                 <div className="button-row">
                     <button
-                        onClick={lambda -> None { gen_summary(); }}
+                        onClick={lambda   -> None{ gen_summary();} }
                         className="btn-primary"
                     >
                         Generate Summary
@@ -828,8 +885,6 @@ cl def Admin() -> any {
 #     }
 #     return <Navigate to="/login" />;
 # }
-
-
 def app()  -> any {
     return <Router>
         <div
@@ -869,3 +924,11 @@ def app()  -> any {
         </div>
     </Router>;
 }
+# <Link
+#     to="/Customer"
+#     style={{"color": "#ffffff", "textDecoration": "none"}}
+# >
+#     Todos
+# </Link>
+
+# onChange={lambda e: any -> None { setRange(e.target.value); }}
