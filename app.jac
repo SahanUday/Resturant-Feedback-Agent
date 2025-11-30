@@ -10,7 +10,7 @@ import from utils {
 import from datetime { date, timedelta, datetime }
 
 cl import from .CustomerDashboard { ReviewInputCard, AutoReplyCard }
-cl import from .AdminDashboard { pageStyle, contentStyle, cardBaseStyle, SentimentBarChart, StatCard, StatsRow, SummaryCard }
+cl import from .AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
 cl import from .HomePage { Home }
 
 
