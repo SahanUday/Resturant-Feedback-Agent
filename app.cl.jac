@@ -98,8 +98,8 @@ def CustomerLoginPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        customerUsername = f"cust:{username}";
-        success = await jacLogin(customerUsername, password);
+        #customerUsername = f"cust:{username}";
+        success = await jacLogin(username, password);
         if success {
             navigate("/Customer");
         } else {
@@ -243,8 +243,8 @@ def AdminLoginPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        adminUsername = f"admin:{username}";
-        success = await jacLogin(adminUsername, password);
+        #adminUsername = f"admin:{username}";
+        success = await jacLogin(username, password);
         if success {
             navigate("/Admin");
         } else {
@@ -388,8 +388,8 @@ def CustomerSignupPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        customerUsername = f"cust:{username}";
-        result = await jacSignup(customerUsername, password);
+        #customerUsername = f"cust:{username}";
+        result = await jacSignup(username, password);
         if result["success"] {
             navigate("/Customer");
         } else {
@@ -533,8 +533,8 @@ def AdminSignupPage()  -> any {
             setError("Please fill in all fields");
             return;
         }
-        adminUsername = f"admin:{username}";
-        result = await jacSignup(adminUsername, password);
+        #adminUsername = f"admin:{username}";
+        result = await jacSignup(username, password);
         if result["success"] {
             navigate("/Admin");
         } else {
