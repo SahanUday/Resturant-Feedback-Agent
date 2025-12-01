@@ -10,661 +10,57 @@ function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" !=
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 import { __jacJsx, __jacSpawn } from "@jac-client/utils";
 import { ReviewInputCard, AutoReplyCard } from "./CustomerDashboard.js";
-import { pageStyle, contentStyle, cardBaseStyle, SentimentBarChart, StatCard, StatsRow, SummaryCard } from "./AdminDashboard.js";
+import { SentimentBarChart, StatCard, StatsRow, SummaryCard } from "./AdminDashboard.js";
 import { Home } from "./HomePage.js";
 import { useState, useEffect } from "react";
-import { Router, Routes, Route, Link, Navigate, useNavigate, jacSignup, jacLogin, jacLogout, jacIsLoggedIn } from "@jac-client/utils";
+import { Router, Routes, Route, Link, Navigate, useNavigate, jacLogin, jacLogout, jacIsLoggedIn } from "@jac-client/utils";
 import "./cstyles.css";
 import "./adstyles.css";
-function Navigation() {
-  var isLoggedIn = jacIsLoggedIn();
-  var navigate = useNavigate();
-  function handleLogout(e) {
-    e.preventDefault();
-    jacLogout();
-    navigate("/");
-  }
-  if (isLoggedIn) {
-    return __jacJsx("nav", {
-      "style": {
-        "padding": "12px 24px",
-        "background": "#3b82f6",
-        "color": "#ffffff",
-        "display": "flex",
-        "justifyContent": "space-between"
-      }
-    }, [__jacJsx("div", {
-      "style": {
-        "fontWeight": "600"
-      }
-    }, ["Todo App"]), __jacJsx("div", {
-      "style": {
-        "display": "flex",
-        "gap": "16px"
-      }
-    }, [__jacJsx("button", {
-      "onClick": handleLogout,
-      "style": {
-        "background": "none",
-        "color": "#ffffff",
-        "border": "1px solid #ffffff",
-        "padding": "2px 10px",
-        "borderRadius": "4px",
-        "cursor": "pointer"
-      }
-    }, ["Logout"])])]);
-  }
-  return __jacJsx("nav", {
-    "style": {
-      "padding": "12px 24px",
-      "background": "#3b82f6",
-      "color": "#ffffff",
-      "display": "flex",
-      "justifyContent": "space-between"
-    }
-  }, [__jacJsx("div", {
-    "style": {
-      "fontWeight": "600"
-    }
-  }, ["Todo App"]), __jacJsx("div", {
-    "style": {
-      "display": "flex",
-      "gap": "16px"
-    }
-  }, [__jacJsx(Link, {
-    "to": "/login",
-    "style": {
-      "color": "#ffffff",
-      "textDecoration": "none"
-    }
-  }, ["Login"]), __jacJsx(Link, {
-    "to": "/signup",
-    "style": {
-      "color": "#ffffff",
-      "textDecoration": "none"
-    }
-  }, ["Sign Up"])])]);
-}
-function CustomerLoginPage() {
+import "./homestyle.css";
+function Customer() {
   var _useState = useState(""),
     _useState2 = _slicedToArray(_useState, 2),
-    username = _useState2[0],
-    setUsername = _useState2[1];
+    answer = _useState2[0],
+    setAnswer = _useState2[1];
   var _useState3 = useState(""),
     _useState4 = _slicedToArray(_useState3, 2),
-    password = _useState4[0],
-    setPassword = _useState4[1];
-  var _useState5 = useState(""),
+    input = _useState4[0],
+    setInput = _useState4[1];
+  var _useState5 = useState(false),
     _useState6 = _slicedToArray(_useState5, 2),
-    error = _useState6[0],
-    setError = _useState6[1];
-  var navigate = useNavigate();
-  function handleLogin(_x) {
-    return _handleLogin.apply(this, arguments);
-  }
-  function _handleLogin() {
-    _handleLogin = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee(e) {
-      var success;
-      return _regenerator().w(function (_context) {
-        while (1) switch (_context.n) {
-          case 0:
-            e.preventDefault();
-            setError("");
-            if (!(!username || !password)) {
-              _context.n = 1;
-              break;
-            }
-            setError("Please fill in all fields");
-            return _context.a(2);
-          case 1:
-            _context.n = 2;
-            return jacLogin(username, password);
-          case 2:
-            success = _context.v;
-            if (success) {
-              navigate("/Customer");
-            } else {
-              setError("Invalid credentials");
-            }
-          case 3:
-            return _context.a(2);
-        }
-      }, _callee);
-    }));
-    return _handleLogin.apply(this, arguments);
-  }
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-  var errorDisplay = null;
-  if (error) {
-    errorDisplay = __jacJsx("div", {
-      "style": {
-        "color": "#dc2626",
-        "fontSize": "14px",
-        "marginBottom": "10px"
-      }
-    }, [error]);
-  }
-  return __jacJsx("div", {
-    "style": {
-      "minHeight": "calc(100vh - 48px)",
-      "display": "flex",
-      "alignItems": "center",
-      "justifyContent": "center",
-      "background": "#f5f5f5"
-    }
-  }, [__jacJsx("div", {
-    "style": {
-      "background": "#ffffff",
-      "padding": "30px",
-      "borderRadius": "8px",
-      "width": "280px",
-      "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
-    }
-  }, [__jacJsx("h2", {
-    "style": {
-      "marginBottom": "20px"
-    }
-  }, ["Login"]), __jacJsx("form", {
-    "onSubmit": handleLogin
-  }, [__jacJsx("input", {
-    "type": "text",
-    "value": username,
-    "onChange": handleUsernameChange,
-    "placeholder": "Username",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), __jacJsx("input", {
-    "type": "password",
-    "value": password,
-    "onChange": handlePasswordChange,
-    "placeholder": "Password",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), errorDisplay, __jacJsx("button", {
-    "type": "submit",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "background": "#3b82f6",
-      "color": "#ffffff",
-      "border": "none",
-      "borderRadius": "4px",
-      "cursor": "pointer",
-      "fontWeight": "600"
-    }
-  }, ["Login"])]), __jacJsx("p", {
-    "style": {
-      "textAlign": "center",
-      "marginTop": "12px",
-      "fontSize": "14px"
-    }
-  }, ["Need an account?", __jacJsx(Link, {
-    "to": "/customersignup"
-  }, ["Sign up"])])])]);
-}
-function AdminLoginPage() {
-  var _useState7 = useState(""),
-    _useState8 = _slicedToArray(_useState7, 2),
-    username = _useState8[0],
-    setUsername = _useState8[1];
-  var _useState9 = useState(""),
-    _useState0 = _slicedToArray(_useState9, 2),
-    password = _useState0[0],
-    setPassword = _useState0[1];
-  var _useState1 = useState(""),
-    _useState10 = _slicedToArray(_useState1, 2),
-    error = _useState10[0],
-    setError = _useState10[1];
-  var navigate = useNavigate();
-  function handleLogin(_x2) {
-    return _handleLogin2.apply(this, arguments);
-  }
-  function _handleLogin2() {
-    _handleLogin2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(e) {
-      var success;
-      return _regenerator().w(function (_context2) {
-        while (1) switch (_context2.n) {
-          case 0:
-            e.preventDefault();
-            setError("");
-            if (!(!username || !password)) {
-              _context2.n = 1;
-              break;
-            }
-            setError("Please fill in all fields");
-            return _context2.a(2);
-          case 1:
-            _context2.n = 2;
-            return jacLogin(username, password);
-          case 2:
-            success = _context2.v;
-            if (success) {
-              navigate("/Admin");
-            } else {
-              setError("Invalid credentials");
-            }
-          case 3:
-            return _context2.a(2);
-        }
-      }, _callee2);
-    }));
-    return _handleLogin2.apply(this, arguments);
-  }
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-  var errorDisplay = null;
-  if (error) {
-    errorDisplay = __jacJsx("div", {
-      "style": {
-        "color": "#dc2626",
-        "fontSize": "14px",
-        "marginBottom": "10px"
-      }
-    }, [error]);
-  }
-  return __jacJsx("div", {
-    "style": {
-      "minHeight": "calc(100vh - 48px)",
-      "display": "flex",
-      "alignItems": "center",
-      "justifyContent": "center",
-      "background": "#f5f5f5"
-    }
-  }, [__jacJsx("div", {
-    "style": {
-      "background": "#ffffff",
-      "padding": "30px",
-      "borderRadius": "8px",
-      "width": "280px",
-      "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
-    }
-  }, [__jacJsx("h2", {
-    "style": {
-      "marginBottom": "20px"
-    }
-  }, ["Login"]), __jacJsx("form", {
-    "onSubmit": handleLogin
-  }, [__jacJsx("input", {
-    "type": "text",
-    "value": username,
-    "onChange": handleUsernameChange,
-    "placeholder": "Username",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), __jacJsx("input", {
-    "type": "password",
-    "value": password,
-    "onChange": handlePasswordChange,
-    "placeholder": "Password",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), errorDisplay, __jacJsx("button", {
-    "type": "submit",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "background": "#3b82f6",
-      "color": "#ffffff",
-      "border": "none",
-      "borderRadius": "4px",
-      "cursor": "pointer",
-      "fontWeight": "600"
-    }
-  }, ["Login"])]), __jacJsx("p", {
-    "style": {
-      "textAlign": "center",
-      "marginTop": "12px",
-      "fontSize": "14px"
-    }
-  }, ["Need an account?", __jacJsx(Link, {
-    "to": "/adminsignup"
-  }, ["Sign up"])])])]);
-}
-function CustomerSignupPage() {
-  var _useState11 = useState(""),
-    _useState12 = _slicedToArray(_useState11, 2),
-    username = _useState12[0],
-    setUsername = _useState12[1];
-  var _useState13 = useState(""),
-    _useState14 = _slicedToArray(_useState13, 2),
-    password = _useState14[0],
-    setPassword = _useState14[1];
-  var _useState15 = useState(""),
-    _useState16 = _slicedToArray(_useState15, 2),
-    error = _useState16[0],
-    setError = _useState16[1];
-  var navigate = useNavigate();
-  function handleSignup(_x3) {
-    return _handleSignup.apply(this, arguments);
-  }
-  function _handleSignup() {
-    _handleSignup = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(e) {
-      var result;
-      return _regenerator().w(function (_context3) {
-        while (1) switch (_context3.n) {
-          case 0:
-            e.preventDefault();
-            setError("");
-            if (!(!username || !password)) {
-              _context3.n = 1;
-              break;
-            }
-            setError("Please fill in all fields");
-            return _context3.a(2);
-          case 1:
-            _context3.n = 2;
-            return jacSignup(username, password);
-          case 2:
-            result = _context3.v;
-            if (result["success"]) {
-              navigate("/Customer");
-            } else {
-              setError(result["error"] ? result["error"] : "Signup failed");
-            }
-          case 3:
-            return _context3.a(2);
-        }
-      }, _callee3);
-    }));
-    return _handleSignup.apply(this, arguments);
-  }
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-  var errorDisplay = null;
-  if (error) {
-    errorDisplay = __jacJsx("div", {
-      "style": {
-        "color": "#dc2626",
-        "fontSize": "14px",
-        "marginBottom": "10px"
-      }
-    }, [error]);
-  }
-  return __jacJsx("div", {
-    "style": {
-      "minHeight": "calc(100vh - 48px)",
-      "display": "flex",
-      "alignItems": "center",
-      "justifyContent": "center",
-      "background": "#f5f5f5"
-    }
-  }, [__jacJsx("div", {
-    "style": {
-      "background": "#ffffff",
-      "padding": "30px",
-      "borderRadius": "8px",
-      "width": "280px",
-      "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
-    }
-  }, [__jacJsx("h2", {
-    "style": {
-      "marginBottom": "20px"
-    }
-  }, ["Sign Up"]), __jacJsx("form", {
-    "onSubmit": handleSignup
-  }, [__jacJsx("input", {
-    "type": "text",
-    "value": username,
-    "onChange": handleUsernameChange,
-    "placeholder": "Username",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), __jacJsx("input", {
-    "type": "password",
-    "value": password,
-    "onChange": handlePasswordChange,
-    "placeholder": "Password",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), errorDisplay, __jacJsx("button", {
-    "type": "submit",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "background": "#3b82f6",
-      "color": "#ffffff",
-      "border": "none",
-      "borderRadius": "4px",
-      "cursor": "pointer",
-      "fontWeight": "600"
-    }
-  }, ["Sign Up"])]), __jacJsx("p", {
-    "style": {
-      "textAlign": "center",
-      "marginTop": "12px",
-      "fontSize": "14px"
-    }
-  }, ["Have an account?", __jacJsx(Link, {
-    "to": "/customerlogin"
-  }, ["Customer Login"])])])]);
-}
-function AdminSignupPage() {
-  var _useState17 = useState(""),
-    _useState18 = _slicedToArray(_useState17, 2),
-    username = _useState18[0],
-    setUsername = _useState18[1];
-  var _useState19 = useState(""),
-    _useState20 = _slicedToArray(_useState19, 2),
-    password = _useState20[0],
-    setPassword = _useState20[1];
-  var _useState21 = useState(""),
-    _useState22 = _slicedToArray(_useState21, 2),
-    error = _useState22[0],
-    setError = _useState22[1];
-  var navigate = useNavigate();
-  function handleSignup(_x4) {
-    return _handleSignup2.apply(this, arguments);
-  }
-  function _handleSignup2() {
-    _handleSignup2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(e) {
-      var result;
-      return _regenerator().w(function (_context4) {
-        while (1) switch (_context4.n) {
-          case 0:
-            e.preventDefault();
-            setError("");
-            if (!(!username || !password)) {
-              _context4.n = 1;
-              break;
-            }
-            setError("Please fill in all fields");
-            return _context4.a(2);
-          case 1:
-            _context4.n = 2;
-            return jacSignup(username, password);
-          case 2:
-            result = _context4.v;
-            if (result["success"]) {
-              navigate("/Admin");
-            } else {
-              setError(result["error"] ? result["error"] : "Signup failed");
-            }
-          case 3:
-            return _context4.a(2);
-        }
-      }, _callee4);
-    }));
-    return _handleSignup2.apply(this, arguments);
-  }
-  function handleUsernameChange(e) {
-    setUsername(e.target.value);
-  }
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-  var errorDisplay = null;
-  if (error) {
-    errorDisplay = __jacJsx("div", {
-      "style": {
-        "color": "#dc2626",
-        "fontSize": "14px",
-        "marginBottom": "10px"
-      }
-    }, [error]);
-  }
-  return __jacJsx("div", {
-    "style": {
-      "minHeight": "calc(100vh - 48px)",
-      "display": "flex",
-      "alignItems": "center",
-      "justifyContent": "center",
-      "background": "#f5f5f5"
-    }
-  }, [__jacJsx("div", {
-    "style": {
-      "background": "#ffffff",
-      "padding": "30px",
-      "borderRadius": "8px",
-      "width": "280px",
-      "boxShadow": "0 2px 4px rgba(0,0,0,0.1)"
-    }
-  }, [__jacJsx("h2", {
-    "style": {
-      "marginBottom": "20px"
-    }
-  }, ["Sign Up"]), __jacJsx("form", {
-    "onSubmit": handleSignup
-  }, [__jacJsx("input", {
-    "type": "text",
-    "value": username,
-    "onChange": handleUsernameChange,
-    "placeholder": "Username",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), __jacJsx("input", {
-    "type": "password",
-    "value": password,
-    "onChange": handlePasswordChange,
-    "placeholder": "Password",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "marginBottom": "10px",
-      "border": "1px solid #ddd",
-      "borderRadius": "4px",
-      "boxSizing": "border-box"
-    }
-  }, []), errorDisplay, __jacJsx("button", {
-    "type": "submit",
-    "style": {
-      "width": "100%",
-      "padding": "8px",
-      "background": "#3b82f6",
-      "color": "#ffffff",
-      "border": "none",
-      "borderRadius": "4px",
-      "cursor": "pointer",
-      "fontWeight": "600"
-    }
-  }, ["Sign Up"])]), __jacJsx("p", {
-    "style": {
-      "textAlign": "center",
-      "marginTop": "12px",
-      "fontSize": "14px"
-    }
-  }, ["Have an account?", __jacJsx(Link, {
-    "to": "/adminlogin"
-  }, ["Admin Login"])])])]);
-}
-function Customer() {
-  var _useState23 = useState(""),
-    _useState24 = _slicedToArray(_useState23, 2),
-    answer = _useState24[0],
-    setAnswer = _useState24[1];
-  var _useState25 = useState(""),
-    _useState26 = _slicedToArray(_useState25, 2),
-    input = _useState26[0],
-    setInput = _useState26[1];
-  var _useState27 = useState(false),
-    _useState28 = _slicedToArray(_useState27, 2),
-    loading = _useState28[0],
-    setLoading = _useState28[1];
+    loading = _useState6[0],
+    setLoading = _useState6[1];
   function computeAnswer() {
     return _computeAnswer.apply(this, arguments);
   }
   function _computeAnswer() {
-    _computeAnswer = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+    _computeAnswer = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
       var response, result;
-      return _regenerator().w(function (_context5) {
-        while (1) switch (_context5.n) {
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.n) {
           case 0:
             setLoading(true);
             setAnswer("");
-            _context5.n = 1;
+            _context.n = 1;
             return __jacSpawn("analyzer", "", {
               "feedback": input
             });
           case 1:
-            response = _context5.v;
+            response = _context.v;
             result = response.reports;
             setAnswer(result);
             setLoading(false);
           case 2:
-            return _context5.a(2);
+            return _context.a(2);
         }
-      }, _callee5);
+      }, _callee);
     }));
     return _computeAnswer.apply(this, arguments);
   }
   return __jacJsx("div", {
-    "className": "app-container"
+    "className": "customer-page"
   }, [__jacJsx("div", {
-    "className": "app-layout"
+    "className": "customer-column"
   }, [__jacJsx(ReviewInputCard, {
     "input": input,
     "setInput": setInput,
@@ -675,84 +71,70 @@ function Customer() {
   }, [])])]);
 }
 function Admin() {
-  var _useState29 = useState("Last 3 Days"),
-    _useState30 = _slicedToArray(_useState29, 2),
-    range = _useState30[0],
-    setRange = _useState30[1];
-  var _useState31 = useState([]),
-    _useState32 = _slicedToArray(_useState31, 2),
-    positive_count = _useState32[0],
-    setPositiveCount = _useState32[1];
-  var _useState33 = useState([]),
-    _useState34 = _slicedToArray(_useState33, 2),
-    negative_count = _useState34[0],
-    setNegativeCount = _useState34[1];
-  var _useState35 = useState([]),
-    _useState36 = _slicedToArray(_useState35, 2),
-    neutral_count = _useState36[0],
-    setNeutralCount = _useState36[1];
-  var _useState37 = useState(null),
-    _useState38 = _slicedToArray(_useState37, 2),
-    pricing_count = _useState38[0],
-    setPricingCount = _useState38[1];
-  var _useState39 = useState(null),
-    _useState40 = _slicedToArray(_useState39, 2),
-    food_quality_count = _useState40[0],
-    setFoodQualityCount = _useState40[1];
-  var _useState41 = useState(null),
-    _useState42 = _slicedToArray(_useState41, 2),
-    delivery_count = _useState42[0],
-    setDeliveryCount = _useState42[1];
-  var _useState43 = useState(null),
-    _useState44 = _slicedToArray(_useState43, 2),
-    other_count = _useState44[0],
-    setOtherCount = _useState44[1];
-  var _useState45 = useState([]),
-    _useState46 = _slicedToArray(_useState45, 2),
-    dates = _useState46[0],
-    setDates = _useState46[1];
-  var _useState47 = useState([]),
-    _useState48 = _slicedToArray(_useState47, 2),
-    data = _useState48[0],
-    setData = _useState48[1];
-  var _useState49 = useState(""),
-    _useState50 = _slicedToArray(_useState49, 2),
-    summary = _useState50[0],
-    setSummary = _useState50[1];
-  var _useState51 = useState(false),
-    _useState52 = _slicedToArray(_useState51, 2),
-    loading = _useState52[0],
-    setLoading = _useState52[1];
-  var headerRowStyle = {
-    "display": "flex",
-    "justifyContent": "space-between",
-    "alignItems": "center"
-  };
-  var titleStyle = {
-    "fontSize": "18px",
-    "fontWeight": "600",
-    "color": "#e5e7eb"
-  };
-  var subtitleStyle = {
-    "fontSize": "12px",
-    "color": "#9ca3af"
-  };
-  function get_data(_x5) {
+  var _useState7 = useState("Last 3 Days"),
+    _useState8 = _slicedToArray(_useState7, 2),
+    range = _useState8[0],
+    setRange = _useState8[1];
+  var _useState9 = useState([]),
+    _useState0 = _slicedToArray(_useState9, 2),
+    positive_count = _useState0[0],
+    setPositiveCount = _useState0[1];
+  var _useState1 = useState([]),
+    _useState10 = _slicedToArray(_useState1, 2),
+    negative_count = _useState10[0],
+    setNegativeCount = _useState10[1];
+  var _useState11 = useState([]),
+    _useState12 = _slicedToArray(_useState11, 2),
+    neutral_count = _useState12[0],
+    setNeutralCount = _useState12[1];
+  var _useState13 = useState(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    pricing_count = _useState14[0],
+    setPricingCount = _useState14[1];
+  var _useState15 = useState(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    food_quality_count = _useState16[0],
+    setFoodQualityCount = _useState16[1];
+  var _useState17 = useState(null),
+    _useState18 = _slicedToArray(_useState17, 2),
+    delivery_count = _useState18[0],
+    setDeliveryCount = _useState18[1];
+  var _useState19 = useState(null),
+    _useState20 = _slicedToArray(_useState19, 2),
+    other_count = _useState20[0],
+    setOtherCount = _useState20[1];
+  var _useState21 = useState([]),
+    _useState22 = _slicedToArray(_useState21, 2),
+    dates = _useState22[0],
+    setDates = _useState22[1];
+  var _useState23 = useState([]),
+    _useState24 = _slicedToArray(_useState23, 2),
+    data = _useState24[0],
+    setData = _useState24[1];
+  var _useState25 = useState(""),
+    _useState26 = _slicedToArray(_useState25, 2),
+    summary = _useState26[0],
+    setSummary = _useState26[1];
+  var _useState27 = useState(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    loading = _useState28[0],
+    setLoading = _useState28[1];
+  function get_data(_x) {
     return _get_data.apply(this, arguments);
   }
   function _get_data() {
-    _get_data = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(e) {
+    _get_data = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(e) {
       var response, result, data_list, lent, num, d;
-      return _regenerator().w(function (_context6) {
-        while (1) switch (_context6.n) {
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.n) {
           case 0:
             setRange(e.target.value);
-            _context6.n = 1;
+            _context2.n = 1;
             return __jacSpawn("grt_counts", "", {
               "range_option": e.target.value
             });
           case 1:
-            response = _context6.v;
+            response = _context2.v;
             console.log(response);
             result = response.reports[0];
             setPositiveCount(result["positive_count"]);
@@ -781,9 +163,9 @@ function Admin() {
             }
             setData(data_list);
           case 2:
-            return _context6.a(2);
+            return _context2.a(2);
         }
-      }, _callee6);
+      }, _callee2);
     }));
     return _get_data.apply(this, arguments);
   }
@@ -791,54 +173,47 @@ function Admin() {
     return _gen_summary.apply(this, arguments);
   }
   function _gen_summary() {
-    _gen_summary = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+    _gen_summary = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
       var summ, result;
-      return _regenerator().w(function (_context7) {
-        while (1) switch (_context7.n) {
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.n) {
           case 0:
             setLoading(true);
-            _context7.n = 1;
+            _context3.n = 1;
             return __jacSpawn("summerize", "", {
               "range_option": range
             });
           case 1:
-            summ = _context7.v;
+            summ = _context3.v;
             result = summ.reports[0];
             setSummary(result["summary"]);
             setLoading(false);
           case 2:
-            return _context7.a(2);
+            return _context3.a(2);
         }
-      }, _callee7);
+      }, _callee3);
     }));
     return _gen_summary.apply(this, arguments);
   }
   return __jacJsx("div", {
-    "style": pageStyle()
+    "className": "pageC"
   }, [__jacJsx("div", {
-    "style": contentStyle()
+    "className": "contentC"
   }, [__jacJsx("div", {
-    "style": headerRowStyle
+    "className": "header-rowNew",
+    "style": {
+      "marginBottom": "16px"
+    }
   }, [__jacJsx("div", {}, [__jacJsx("div", {
-    "style": titleStyle
+    "className": "header-titleNew"
   }, ["Comment activity graph"]), __jacJsx("div", {
-    "style": subtitleStyle
+    "className": "header-subtitleNew"
   }, ["Visualise positive, negative and neutral comments over time."])]), __jacJsx("select", {
     "value": range,
     "onChange": function onChange(e) {
       get_data(e);
     },
-    "style": {
-      "padding": "8px 12px",
-      "borderRadius": "8px",
-      "fontSize": "13px",
-      "fontWeight": "500",
-      "backgroundColor": "#020617",
-      "color": "#e5e7eb",
-      "border": "1px solid #374151",
-      "outline": "none",
-      "cursor": "pointer"
-    }
+    "className": "range-select"
   }, [__jacJsx("option", {
     "value": "Last 3 Days"
   }, ["Last 3 Days"]), __jacJsx("option", {
@@ -846,7 +221,7 @@ function Admin() {
   }, ["Last 7 Days"]), __jacJsx("option", {
     "value": "Last 30 Days"
   }, ["Last 30 Days"])])]), __jacJsx("div", {
-    "style": cardBaseStyle()
+    "className": "card-base"
   }, [__jacJsx(StatsRow, {
     "range": range,
     "foodValue": food_quality_count,
@@ -856,7 +231,7 @@ function Admin() {
   }, []), __jacJsx(SentimentBarChart, {
     "chartdata": data
   }, [])]), __jacJsx("div", {
-    "style": cardBaseStyle()
+    "className": "card-base"
   }, [__jacJsx(SummaryCard, {
     "summary": summary,
     "loading": loading
@@ -874,21 +249,9 @@ function app() {
     "style": {
       "fontFamily": "system-ui, sans-serif"
     }
-  }, [__jacJsx(Navigation, {}, []), __jacJsx(Routes, {}, [__jacJsx(Route, {
+  }, [__jacJsx(Routes, {}, [__jacJsx(Route, {
     "path": "/",
     "element": __jacJsx(Home, {}, [])
-  }, []), __jacJsx(Route, {
-    "path": "/customerlogin",
-    "element": __jacJsx(CustomerLoginPage, {}, [])
-  }, []), __jacJsx(Route, {
-    "path": "/adminlogin",
-    "element": __jacJsx(AdminLoginPage, {}, [])
-  }, []), __jacJsx(Route, {
-    "path": "/customersignup",
-    "element": __jacJsx(CustomerSignupPage, {}, [])
-  }, []), __jacJsx(Route, {
-    "path": "/adminsignup",
-    "element": __jacJsx(AdminSignupPage, {}, [])
   }, []), __jacJsx(Route, {
     "path": "/Customer",
     "element": __jacJsx(Customer, {}, [])
@@ -897,4 +260,4 @@ function app() {
     "element": __jacJsx(Admin, {}, [])
   }, [])])])]);
 }
-export { Admin, AdminLoginPage, AdminSignupPage, Customer, CustomerLoginPage, CustomerSignupPage, Navigation, app };
+export { Admin, Customer, app };

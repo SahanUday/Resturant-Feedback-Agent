@@ -10,7 +10,7 @@ import from utils {
 import from datetime { date, timedelta, datetime }
 
 cl import from .CustomerDashboard { ReviewInputCard, AutoReplyCard }
-cl import from .AdminDashboard { pageStyle, contentStyle, cardBaseStyle, SentimentBarChart, StatCard, StatsRow, SummaryCard }
+cl import from .AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
 cl import from .HomePage { Home }
 
 
@@ -65,12 +65,6 @@ walker analyzer {
             );
         }
 
-        # report {
-        #     "sentiment": analisis.sentiment,
-        #     "urgency": analisis.urgency,
-        #     "category": analisis.category,
-        #     "date": str(today),
-        # };
         save_to_csv(
             feedback=self.feedback,
             sentiment=analisis.sentiment,
@@ -87,10 +81,6 @@ walker grt_counts {
 
     can start with `root entry {
         let (start_date, end_date) = get_dates(range_option=self.range_option);
-        # report {
-        #     "start_date": (start_date),
-        #     "end_date": (end_date),
-        # };
 
         start = datetime.strptime(start_date, "%m/%d/%Y");
         end   = datetime.strptime(end_date, "%m/%d/%Y");
@@ -133,10 +123,6 @@ walker grt_counts {
             neutral_counts . append ( ne_count ) ;
         }
 
-        # positive = [root->:Id: date>=start_date :->(`?Sentiment: sen=="positive")->:Category:->(`?Feedback)];
-        # negative = [root->:Id: date>=start_date:->(`?Sentiment: sen=="negative")->:Category:->(`?Feedback)];
-        # neutral = [root->:Id: date>=start_date:->(`?Sentiment: sen=="neutral")->:Category:->(`?Feedback)];
-
         pricing = [root->:Id: date>=start_date :->(`?Sentiment)->:Category: cat=="Pricing":->(`?Feedback)];
         food_quality = [root->:Id: date>=start_date:->(`?Sentiment)->:Category: cat=="Food Quality":->(`?Feedback)];
         delivery = [root->:Id: date>=start_date:->(`?Sentiment)->:Category: cat=="Delivery":->(`?Feedback)];
@@ -154,10 +140,6 @@ walker grt_counts {
 
             "dates": dates,
         };
-        # report self.range_option;
-
-
-        
 
     }
 }

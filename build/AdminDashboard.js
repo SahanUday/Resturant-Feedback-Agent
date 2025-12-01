@@ -1,37 +1,6 @@
 import { __jacJsx, __jacSpawn } from "@jac-client/utils";
 import { useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend, ResponsiveContainer } from "recharts";
-function pageStyle() {
-  return {
-    "minHeight": "100vh",
-    "backgroundColor": "#0f172a",
-    "display": "flex",
-    "justifyContent": "center",
-    "alignItems": "flex-start",
-    "padding": "32px",
-    "fontFamily": "system-ui, sans-serif",
-    "boxSizing": "border-box"
-  };
-}
-function contentStyle() {
-  return {
-    "width": "100%",
-    "maxWidth": "900px",
-    "display": "flex",
-    "flexDirection": "column",
-    "gap": "18px"
-  };
-}
-function cardBaseStyle() {
-  return {
-    "backgroundColor": "#020617",
-    "borderRadius": "16px",
-    "padding": "24px",
-    "boxShadow": "0 14px 45px rgba(15,23,42,0.65)",
-    "boxSizing": "border-box",
-    "border": "1px solid #1f2937"
-  };
-}
 function SentimentBarChart(props) {
   return __jacJsx(ResponsiveContainer, {
     "width": "100%",
@@ -40,9 +9,9 @@ function SentimentBarChart(props) {
     "data": props.chartdata,
     "margin": {
       top: 20,
-      right: 30,
+      right: 50,
       left: 20,
-      bottom: 5
+      bottom: 50
     }
   }, [__jacJsx(CartesianGrid, {
     "strokeDasharray": "3 3"
@@ -103,4 +72,4 @@ function SummaryCard(props) {
     "className": "ml-2 text-sm text-gray-500"
   }, ["Generating reply..."])]), displayText])]);
 }
-export { SentimentBarChart, StatCard, StatsRow, SummaryCard, cardBaseStyle, contentStyle, pageStyle };
+export { SentimentBarChart, StatCard, StatsRow, SummaryCard };
