@@ -3,9 +3,10 @@ import from utils {
     response_generator,
     save_to_csv,
     get_dates,
-    generate_summary,
-    filter_feedback
+    # generate_summary,
+    # filter_feedback
 }
+import from byllm.lib { Model }
 
 import from datetime { date, timedelta, datetime }
 
@@ -13,6 +14,65 @@ cl import from .CustomerDashboard { ReviewInputCard, AutoReplyCard }
 cl import from .AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
 cl import from .HomePage { Home }
 
+glob llm = Model(model_name="gemini/gemini-2.5-flash");
+
+
+def filter_feedback(start_date_str: str, end_date_str: str) -> dict {
+    let start_date = datetime.strptime(start_date_str, '%m/%d/%Y').date();
+    let end_date = datetime.strptime(end_date_str, '%m/%d/%Y').date();
+    
+    let dates = [ ] ; 
+    let current = start_date ;
+
+    while ( current <= end_date ) { 
+        dates . append ( current . strftime ( '%m/%d/%Y' ) ) ; 
+        let current = current+timedelta(days=1) ; 
+    } 
+
+    let positive_list = [];
+    let negative_list = [];
+    let neutral_list = [];
+
+    for day in dates {
+
+        if [root->:Id: date==day :->(`?Sentiment: sen=="positive")->:Category:->(`?Feedback)] {
+            positive_list = [root->:Id: date==day :->(`?Sentiment: sen=="positive")->:Category:->(`?Feedback)];
+        }
+        if [root->:Id: date==day :->(`?Sentiment: sen=="negative")->:Category:->(`?Feedback)] {
+            negative_list = [root->:Id: date==day :->(`?Sentiment: sen=="negative")->:Category:->(`?Feedback)];
+        }
+        if [root->:Id: date==day :->(`?Sentiment: sen=="neutral")->:Category:->(`?Feedback)] {
+            neutral_list = [root->:Id: date==day :->(`?Sentiment: sen=="neutral")->:Category:->(`?Feedback)];
+        }
+    }
+
+    let positive_feedbacks = [];
+    let negative_feedbacks = [];
+    let neutral_feedbacks = [];
+
+    for p_feed in positive_list {
+        positive_feedbacks.append(p_feed.fed);
+    }
+    for n_feed in negative_list {
+        negative_feedbacks.append(n_feed.fed);
+    }
+    for ne_feed in neutral_list {
+        neutral_feedbacks.append(ne_feed.fed);
+    }
+
+    return {
+        "positive": positive_feedbacks,
+        "negative": negative_feedbacks,
+        "neutral": neutral_feedbacks,
+    };
+}
+
+"""You are an expert summary generator. Your task is to generate a concise and informative summary of customer feedback for a restaurant based on the provided feedbacks(positive, negative, neutral). Get the feedbacks from the given date range using tool.
+Highlight key strengths and urgent issues. Summarize the overall customer sentiment trend, notable positives, and areas needing immediate attention.
+Generate summery as paragraphs with clear headings for each sentiment category.
+Add last paragraph by including overall overveiw of the summarize
+I want to show this summary in JS frontend so make sure summary include plain text including paragraphs and highlighting topics."""
+def generate_summary(start_date_str: str, end_date_str: str) -> str by llm(method="ReAct", tools=([filter_feedback])) ;
 
 
 
