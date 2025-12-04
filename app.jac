@@ -3,16 +3,15 @@ import from utils {
     response_generator,
     save_to_csv,
     get_dates,
-    # generate_summary,
-    # filter_feedback
+
 }
 import from byllm.lib { Model }
 
 import from datetime { date, timedelta, datetime }
 
-cl import from .CustomerDashboard { ReviewInputCard, AutoReplyCard }
-cl import from .AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
-cl import from .HomePage { Home }
+cl import from .components.AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
+cl import from .components.HomePage { Home }
+cl import from .components.customerdashboard { ReviewInputCard, AutoReplyCard }
 
 glob llm = Model(model_name="gemini/gemini-2.5-flash");
 
