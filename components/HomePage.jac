@@ -23,19 +23,19 @@ cl def Home()  -> any {
                 <h1
                     className="title-home"
                 >
-                    Kamra Feedback Portal
+                    Resturant Feedback Portal
                 </h1>
                 <p
                     className="shop-description-home"
                 >
-                    Kamra is your cosy corner for great food and better moments.Use this portal to share your experience so we can keep improvingour dishes, delivery, and service for you.
+                    Use this portal to share your experience so we can keep improvingour dishes, delivery, and service for you.
                 </p>
             </div>
             <div>
                 <p
                     className="mid-description-home"
                 >
-                    Login or sign up to give your feedback.
+                    Share your feedback as a customer or manage responses as an admin. Choose your portal below to get started.
                 </p>
             </div>
             <div
@@ -52,7 +52,7 @@ cl def Home()  -> any {
                     <p
                         className="card-subtitle-home"
                     >
-                        Share your dining or delivery experience, track your past feedback,and help Kamra become your perfect spot.
+                        Share your dining or delivery experience, track your past feedback,and help us become your perfect spot.
                     </p>
                     <Link
                         to="/Customer"
