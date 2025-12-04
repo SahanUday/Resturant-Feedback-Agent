@@ -1,21 +1,13 @@
-import from utils {
-    analyzing,
-    response_generator,
-    save_to_csv,
-    get_dates,
-    # generate_summary,
-    # filter_feedback
-}
 import from byllm.lib { Model }
-
 import from datetime { date, timedelta, datetime }
 
-cl import from .CustomerDashboard { ReviewInputCard, AutoReplyCard }
-cl import from .AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
-cl import from .HomePage { Home }
+
+import from utils {analyzing, response_generator,get_dates}
+cl import from .components.AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
+cl import from .components.HomePage { Home }
+cl import from .components.customerdashboard { ReviewInputCard, AutoReplyCard }
 
 glob llm = Model(model_name="gemini/gemini-2.5-flash");
-
 
 def filter_feedback(start_date_str: str, end_date_str: str) -> dict {
     let start_date = datetime.strptime(start_date_str, '%m/%d/%Y').date();
@@ -124,13 +116,6 @@ walker analyzer {
                 fed=self.feedback
             );
         }
-
-        save_to_csv(
-            feedback=self.feedback,
-            sentiment=analisis.sentiment,
-            urgency=analisis.urgency,
-            category=analisis.category
-        );
 
         report reply ;
     }

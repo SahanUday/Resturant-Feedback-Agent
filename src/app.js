@@ -1,12 +1,11 @@
 import {__jacJsx, __jacSpawn} from "@jac-client/utils";
-import { ReviewInputCard, AutoReplyCard } from "./CustomerDashboard.js";
-import { SentimentBarChart, StatCard, StatsRow, SummaryCard } from "./AdminDashboard.js";
-import { Home } from "./HomePage.js";
+import { SentimentBarChart, StatCard, StatsRow, SummaryCard } from "./components/AdminDashboard.js";
+import { Home } from "./components/HomePage.js";
+import { ReviewInputCard, AutoReplyCard } from "./components/customerdashboard.js";
 import { useState, useEffect } from "react";
-import { Router, Routes, Route, Link, Navigate, useNavigate, jacLogin, jacLogout, jacIsLoggedIn } from "@jac-client/utils";
-import "./cstyles.css";
-import "./adstyles.css";
-import "./homestyle.css";
+import ".//cstyles.css";
+import ".//adstyles.css";
+import ".//homestyle.css";
 function Customer() {
   let [answer, setAnswer] = useState("");
   let [input, setInput] = useState("");

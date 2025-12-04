@@ -28,3 +28,5 @@ date,feedback,sentiment,urgency,category
 2025-11-28,"woowww foods are amazing, impressive",positive,low,Food Quality
 2025-11-28,Bad Quality food. You will not get what you see when ordering. Itâ€™s just a waste of money.,negative,high,Food Quality
 2025-12-01,Excellent service,positive,low,Other
+2025-12-03,Delivery ontime,positive,low,Delivery
+2025-12-03,Amazing foods,positive,low,Food Quality
