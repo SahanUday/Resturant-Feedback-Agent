@@ -8,11 +8,11 @@ function Home() {
     "className": "container-home"
   }, [__jacJsx("div", {}, [__jacJsx("h1", {
     "className": "title-home"
-  }, ["Kamra Feedback Portal"]), __jacJsx("p", {
+  }, ["Resturant Feedback Portal"]), __jacJsx("p", {
     "className": "shop-description-home"
-  }, ["Kamra is your cosy corner for great food and better moments.Use this portal to share your experience so we can keep improvingour dishes, delivery, and service for you."])]), __jacJsx("div", {}, [__jacJsx("p", {
+  }, ["Use this portal to share your experience so we can keep improvingour dishes, delivery, and service for you."])]), __jacJsx("div", {}, [__jacJsx("p", {
     "className": "mid-description-home"
-  }, ["Login or sign up to give your feedback."])]), __jacJsx("div", {
+  }, ["Share your feedback as a customer or manage responses as an admin. Choose your portal below to get started."])]), __jacJsx("div", {
     "className": "cards-row-home"
   }, [__jacJsx("div", {
     "className": "portal-card-home"
@@ -20,7 +20,7 @@ function Home() {
     "className": "card-title-home"
   }, ["For customers"]), __jacJsx("p", {
     "className": "card-subtitle-home"
-  }, ["Share your dining or delivery experience, track your past feedback,and help Kamra become your perfect spot."]), __jacJsx(Link, {
+  }, ["Share your dining or delivery experience, track your past feedback,and help us become your perfect spot."]), __jacJsx(Link, {
     "to": "/Customer",
     "className": "card-button-home"
   }, ["Go to customer portal"])]), __jacJsx("div", {
