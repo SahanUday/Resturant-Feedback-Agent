@@ -6,3 +6,4 @@ app.session.users.json
 feedback_dataset.csv
 *.csv
 scr/*
+.env
