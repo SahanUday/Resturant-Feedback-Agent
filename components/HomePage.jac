@@ -1,16 +1,5 @@
 cl import from react { useState, useEffect }
-cl import from "@jac-client/utils" {
-Router,
-Routes,
-Route,
-Link,
-Navigate,
-useNavigate,
-jacSignup,
-jacLogin,
-jacLogout,
-jacIsLoggedIn
-}
+cl import from "@jac-client/utils" { Router,Routes,Route,Link,Navigate,useNavigate,jacSignup,jacLogin,jacLogout,jacIsLoggedIn}
 
 cl def Home()  -> any {
     return <div
@@ -85,5 +74,3 @@ cl def Home()  -> any {
         </div>
     </div>;
 }
-
-

@@ -16,6 +16,7 @@ function Customer() {
     setAnswer("");
     let response = await __jacSpawn("analyzer", "", {"feedback": input});
     let result = response.reports;
+    console.log("Result from LLM:", result);
     setAnswer(result);
     setLoading(false);
   }

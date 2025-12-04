@@ -1,6 +1,5 @@
 cl import from react { useState, useEffect }
-
-cl import from "@jac-client/utils" { Router, Routes, Route, Link, Navigate, useNavigate, jacLogin, jacLogout, jacIsLoggedIn}
+cl import from "@jac-client/utils" { Router, Routes, Route, Link, Navigate, useNavigate}
 
 import ".cstyles.css";
 import ".adstyles.css";
@@ -22,15 +21,8 @@ def Customer -> any {
 
     return <div className="customer-page">
         <div className="customer-column">
-            <ReviewInputCard
-                input={input}
-                setInput={setInput}
-                computeAnswer={computeAnswer}
-            />
-            <AutoReplyCard
-                answer={answer}
-                loading={loading}
-            />
+            <ReviewInputCard input={input} setInput={setInput} computeAnswer={computeAnswer} />
+            <AutoReplyCard answer={answer} loading={loading} />
         </div>
     </div>;
 }
@@ -124,22 +116,11 @@ def Admin()  -> any {
                 </select>
             </div>
             <div className="card-base">
-                <StatsRow
-                    range={range}
-                    foodValue={food_quality_count}
-                    deliveryValue={delivery_count}
-                    pricingValue={pricing_count}
-                    otherValue={other_count}
-                />
-                <SentimentBarChart
-                    chartdata={data}
-                />
+                <StatsRow range={range} foodValue={food_quality_count} deliveryValue={delivery_count} pricingValue={pricing_count} otherValue={other_count} />
+                <SentimentBarChart chartdata={data} />
             </div>
             <div className="card-base">
-                <SummaryCard
-                    summary={summary}
-                    loading={loading}
-                />
+                <SummaryCard summary={summary} loading={loading} />
                 <div className="button-row">
                     <button
                         onClick={lambda   -> None{ gen_summary();} }

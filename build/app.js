@@ -48,6 +48,7 @@ function Customer() {
           case 1:
             response = _context.v;
             result = response.reports;
+            console.log("Result from LLM:", result);
             setAnswer(result);
             setLoading(false);
           case 2:
