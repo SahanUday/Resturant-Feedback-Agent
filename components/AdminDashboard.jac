@@ -137,7 +137,7 @@ cl def SummaryCard(props: any) -> any {
             && <div className="flex justify-center items-center my-3">
                 <div className="animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-transparent"></div>
                 <span className="ml-2 text-sm text-gray-500">
-                    Generating reply...
+                    Generating summary...
                 </span>
             </div>}{displayText}
         </div>
