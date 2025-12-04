@@ -11,44 +11,7 @@ cl import from recharts {
     ResponsiveContainer
 }
 
-# ----------------------------
-# Shared styles
-# ----------------------------
-# cl def pageStyle() -> any {
-#     return {
-#         "minHeight": "100vh",
-#         "backgroundColor": "#0f172a",
-#         "display": "flex",
-#         "justifyContent": "center",
-#         "alignItems": "flex-start",
-#         "padding": "32px",
-#         "fontFamily": "system-ui, sans-serif",
-#         "boxSizing": "border-box"
-#     };
-# }
 
-# cl def contentStyle() -> any {
-#     return {
-#         "width": "100%",
-#         "maxWidth": "900px",
-#         "display": "flex",
-#         "flexDirection": "column",
-#         "gap": "18px"
-#     };
-# }
-
-# cl def cardBaseStyle() -> any {
-#     return {
-#         "backgroundColor": "#020617",
-#         "borderRadius": "16px",
-#         "padding": "24px",
-#         "boxShadow": "0 14px 45px rgba(15,23,42,0.65)",
-#         "boxSizing": "border-box",
-#         "border": "1px solid #1f2937"
-#     };
-# }
-
-# BarChart
 # BarChart
 cl def SentimentBarChart(props: any) -> any {
     return (
