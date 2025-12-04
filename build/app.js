@@ -9,11 +9,11 @@ function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length)
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
 function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 import { __jacJsx, __jacSpawn } from "@jac-client/utils";
-import { SentimentBarChart, StatCard, StatsRow, SummaryCard } from "./components/AdminDashboard.js";
+import { SentimentBarChart, StatCard, StatsRow, SummaryCard, SuggestionsCard } from "./components/AdminDashboard.js";
 import { Home } from "./components/HomePage.js";
 import { ReviewInputCard, AutoReplyCard } from "./components/customerdashboard.js";
 import { useState, useEffect } from "react";
-import { Router, Routes, Route, Link, Navigate, useNavigate, jacLogin, jacLogout, jacIsLoggedIn } from "@jac-client/utils";
+import { Router, Routes, Route, Link, Navigate, useNavigate } from "@jac-client/utils";
 import "./cstyles.css";
 import "./adstyles.css";
 import "./homestyle.css";
@@ -48,7 +48,6 @@ function Customer() {
           case 1:
             response = _context.v;
             result = response.reports;
-            console.log("Result from LLM:", result);
             setAnswer(result);
             setLoading(false);
           case 2:
@@ -116,10 +115,18 @@ function Admin() {
     _useState26 = _slicedToArray(_useState25, 2),
     summary = _useState26[0],
     setSummary = _useState26[1];
-  var _useState27 = useState(false),
+  var _useState27 = useState(""),
     _useState28 = _slicedToArray(_useState27, 2),
-    loading = _useState28[0],
-    setLoading = _useState28[1];
+    suggestions = _useState28[0],
+    setSuggestions = _useState28[1];
+  var _useState29 = useState(false),
+    _useState30 = _slicedToArray(_useState29, 2),
+    loading = _useState30[0],
+    setLoading = _useState30[1];
+  var _useState31 = useState(false),
+    _useState32 = _slicedToArray(_useState31, 2),
+    suggestionLoading = _useState32[0],
+    setSuggestionLoading = _useState32[1];
   function get_data(_x) {
     return _get_data.apply(this, arguments);
   }
@@ -136,7 +143,6 @@ function Admin() {
             });
           case 1:
             response = _context2.v;
-            console.log(response);
             result = response.reports[0];
             setPositiveCount(result["positive_count"]);
             setNegativeCount(result["negative_count"]);
@@ -180,6 +186,7 @@ function Admin() {
         while (1) switch (_context3.n) {
           case 0:
             setLoading(true);
+            setSummary("");
             _context3.n = 1;
             return __jacSpawn("summerize", "", {
               "range_option": range
@@ -195,6 +202,33 @@ function Admin() {
       }, _callee3);
     }));
     return _gen_summary.apply(this, arguments);
+  }
+  function generate_suggestions() {
+    return _generate_suggestions.apply(this, arguments);
+  }
+  function _generate_suggestions() {
+    _generate_suggestions = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4() {
+      var summ, result;
+      return _regenerator().w(function (_context4) {
+        while (1) switch (_context4.n) {
+          case 0:
+            setSuggestionLoading(true);
+            setSuggestions("");
+            _context4.n = 1;
+            return __jacSpawn("suggestions", "", {
+              "range_option": range
+            });
+          case 1:
+            summ = _context4.v;
+            result = summ.reports[0];
+            setSuggestions(result["suggestions"]);
+            setSuggestionLoading(false);
+          case 2:
+            return _context4.a(2);
+        }
+      }, _callee4);
+    }));
+    return _generate_suggestions.apply(this, arguments);
   }
   return __jacJsx("div", {
     "className": "pageC"
@@ -243,7 +277,19 @@ function Admin() {
       gen_summary();
     },
     "className": "btn-primary"
-  }, ["Generate Summary"])])])])]);
+  }, ["Generate Summary"])])]), __jacJsx("div", {
+    "className": "card-base"
+  }, [__jacJsx(SuggestionsCard, {
+    "suggestions": suggestions,
+    "loading": suggestionLoading
+  }, []), __jacJsx("div", {
+    "className": "button-row"
+  }, [__jacJsx("button", {
+    "onClick": function onClick() {
+      generate_suggestions();
+    },
+    "className": "btn-primary"
+  }, ["Generate Suggestions"])])])])]);
 }
 function app() {
   return __jacJsx(Router, {}, [__jacJsx("div", {

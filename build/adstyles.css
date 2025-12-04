@@ -1,5 +1,4 @@
 /* pageStyle */
-
 .app-page {
   min-height: 100vh;
   background-color: #0f172a;
@@ -86,7 +85,7 @@
   margin-bottom: 4px;
 }
 
-/* Grid for the three sentiment cards */
+/* Grid for the four category cards */
 .sentiment-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -99,33 +98,41 @@
   border-radius: 12px;
   border: 1px solid #1f2937;
   padding: 16px;
-  background-image: linear-gradient(135deg,
-      rgba(15, 23, 42, 1),
-      rgba(15, 23, 42, 0.9));
+  background-image: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 1),
+    rgba(15, 23, 42, 0.9)
+  );
   font-size: 14px;
   color: #e5e7eb;
   min-height: 80px;
-  display: flex;
-  align-items: center;
+
+  /* IMPORTANT: keep width fixed, grow only vertically */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+
+  /* use normal block layout so text wraps nicely */
+  display: block;
 }
 
-/* Main column container (mainColumnStyle) */
-.main-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* Paragraph/text inside summary box */
+.summary-box p {
+  margin: 0;
+  white-space: pre-wrap;   /* keep line breaks, wrap long lines */
+  word-wrap: break-word;
 }
 
-
-/* Main column container (mainColumnStyle) */
-.main-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+/* (Optional) alias if you reuse this class name elsewhere */
+.summary-text-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+  white-space: normal;
+  display: block;
 }
-
 
 /* Header row container */
 .header-row {
@@ -133,7 +140,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
 
 /* Header title/subtitle in the top bar */
 .header-title {
@@ -148,8 +154,6 @@
   color: #9ca3af;
 }
 
-
-
 /* Dropdown (time range) */
 .range-select {
   padding: 8px 12px;
@@ -162,7 +166,6 @@
   outline: none;
   cursor: pointer;
 }
-
 
 /* Wrapper for the Generate Summary button */
 .button-row {
@@ -179,7 +182,7 @@ body {
   background-color: #0f172a;
 }
 
-/* Page container */
+/* Page container for Admin */
 .pageC {
   min-height: 100vh;
   background-color: #0f172a;
@@ -191,8 +194,8 @@ body {
   box-sizing: border-box;
 }
 
-/* Main content wrapper */
-.contentSt {
+/* Main content wrapper (matches className="contentC" in Admin) */
+.contentC {
   width: 100%;
   max-width: 900px;
   display: flex;
@@ -224,4 +227,7 @@ body {
   box-shadow: 0 14px 45px rgba(15, 23, 42, 0.65);
   box-sizing: border-box;
   border: 1px solid #1f2937;
+  max-width: 100%;
+  overflow-x: hidden;
 }
+

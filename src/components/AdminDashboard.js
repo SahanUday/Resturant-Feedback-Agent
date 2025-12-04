@@ -14,4 +14,8 @@ function SummaryCard(props) {
   let displayText = props.summary;
   return __jacJsx("div", {"className": "card"}, [__jacJsx("h2", {"className": "section-title"}, ["Summary"]), __jacJsx("p", {"className": "section-subtitle"}, ["Click the Generate Summary button to generate summary."]), __jacJsx("div", {"className": "summary-box"}, [props.loading && __jacJsx("div", {"className": "flex justify-center items-center my-3"}, [__jacJsx("div", {"className": "animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-transparent"}, []), __jacJsx("span", {"className": "ml-2 text-sm text-gray-500"}, ["Generating summary..."])]), displayText])]);
 }
-export { SentimentBarChart, StatCard, StatsRow, SummaryCard };
+function SuggestionsCard(props) {
+  let displayText = props.suggestions;
+  return __jacJsx("div", {"className": "card"}, [__jacJsx("h2", {"className": "section-title"}, ["Suggestions"]), __jacJsx("p", {"className": "section-subtitle"}, ["Click the Generate Suggestions button to generate suggestions."]), __jacJsx("div", {"className": "summary-box"}, [props.loading && __jacJsx("div", {"className": "flex justify-center items-center my-3"}, [__jacJsx("div", {"className": "animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-transparent"}, []), __jacJsx("span", {"className": "ml-2 text-sm text-gray-500"}, ["Generating suggestions..."])]), displayText])]);
+}
+export { SentimentBarChart, StatCard, StatsRow, SuggestionsCard, SummaryCard };

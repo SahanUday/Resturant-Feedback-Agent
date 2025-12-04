@@ -7,3 +7,6 @@ feedback_dataset.csv
 *.csv
 scr/*
 .env
+anchor_store.db.bak
+anchor_store.db.dat
+anchor_store.db.dir

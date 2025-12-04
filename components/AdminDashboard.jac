@@ -58,9 +58,7 @@ cl def StatCard(props: any) -> any {
 }
 
 # Row of category stats (Food / Delivery / Pricing / Others)
-cl def StatsRow(
-    props: any
-) -> any {
+cl def StatsRow(props: any) -> any {
     return <div className="sentiment-grid">
         <StatCard
             label="Food Quality"
@@ -101,6 +99,32 @@ cl def SummaryCard(props: any) -> any {
                 <div className="animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-transparent"></div>
                 <span className="ml-2 text-sm text-gray-500">
                     Generating summary...
+                </span>
+            </div>}{displayText}
+        </div>
+    </div>;
+}
+
+# Suggestion output card
+cl def SuggestionsCard(props: any) -> any {
+    # text fallback
+    let displayText = props.suggestions;
+    # if displayText == "" {
+    #     displayText = "Click the button above to generate a concise summary of your recent feedback across food, delivery, time and other categories.";
+    # }
+    return <div className="card">
+        <h2 className="section-title">
+            Suggestions
+        </h2>
+        <p className="section-subtitle">
+            Click the Generate Suggestions button to generate suggestions.
+        </p>
+        <div className="summary-box">
+            {props.loading
+            && <div className="flex justify-center items-center my-3">
+                <div className="animate-spin rounded-full h-6 w-6 border-2 border-gray-300 border-t-transparent"></div>
+                <span className="ml-2 text-sm text-gray-500">
+                    Generating suggestions...
                 </span>
             </div>}{displayText}
         </div>

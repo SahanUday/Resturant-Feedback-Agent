@@ -2,7 +2,7 @@ import from utils {analyzing,response_generator,get_dates,}
 import from byllm.lib { Model }
 import from datetime { date, timedelta, datetime }
 
-cl import from .components.AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard }
+cl import from .components.AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard, SuggestionsCard }
 cl import from .components.HomePage { Home }
 cl import from .components.customerdashboard { ReviewInputCard, AutoReplyCard }
 
@@ -129,6 +129,12 @@ def search_counts (start_date: str, end_date: str) -> None {
 
 }
 
+"""You are expert in generating actionable suggestions for improving customer satisfaction in a restaurant based on customer feedback given on selected time range.
+Use the feedbacks(positive, negative, neutral) obtained from the given date range using tool to identify key areas for improvement.
+Provide specific, practical suggestions to address common complaints and enhance positive experiences. Focus on actionable steps that the restaurant can implement to improve service quality, food quality, pricing, delivery and other."""
+def generate_suggestions(start_date_str: str, end_date_str: str) -> str by llm(method="ReAct", tools=([filter_feedback])) ;
+
+
 node Sentiment {
     has sen: str;
 }
@@ -187,5 +193,15 @@ walker summerize {
         let (start_date, end_date) = get_dates(range_option=self.range_option);
         summary = generate_summary(start_date_str=start_date, end_date_str=end_date);
         report {"summary": summary,} ;
+    }
+}
+
+walker suggestions {
+    has range_option: str;
+
+    can start with `root entry {
+        let (start_date, end_date) = get_dates(range_option=self.range_option);
+        suggest = generate_suggestions(start_date_str=start_date, end_date_str=end_date);
+        report {"suggestions": suggest,};
     }
 }

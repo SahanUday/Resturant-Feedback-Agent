@@ -40,12 +40,13 @@ def Admin()  -> any {
     let [data, setData] = useState([]);
 
     let [summary, setSummary] = useState("");
+    let [suggestions, setSuggestions] = useState("");
     let [loading, setLoading] = useState(false);
+    let [suggestionLoading, setSuggestionLoading] = useState(false);
 
     async def get_data(e: str) -> any {
         setRange(e.target.value);
         response = root spawn grt_counts(range_option=e.target.value);
-        console.log(response);
         result = response.reports[0];
         setPositiveCount(result["positive_count"]);
         setNegativeCount(result["negative_count"]);
@@ -84,6 +85,17 @@ def Admin()  -> any {
 
         setSummary(result["summary"]);
         setLoading(false);
+    }
+
+    async def generate_suggestions()  -> str {
+        setSuggestionLoading(true);
+        setSuggestions("");
+
+        summ = root spawn suggestions(range_option=range);
+        result = summ.reports[0];
+
+        setSuggestions(result["suggestions"]);
+        setSuggestionLoading(false);
     }
 
     return <div className="pageC">
@@ -130,6 +142,19 @@ def Admin()  -> any {
                     </button>
                 </div>
             </div>
+            #suggestions card
+            <div className="card-base">
+                <SuggestionsCard suggestions={suggestions} loading={suggestionLoading} />
+                <div className="button-row">
+                    <button
+                        onClick={lambda   -> None{ generate_suggestions();} }
+                        className="btn-primary"
+                    >
+                        Generate Suggestions
+                    </button>
+                </div>
+            </div>
+            #end suggestions card
         </div>
     </div>;
 }
