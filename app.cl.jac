@@ -85,8 +85,11 @@ def Admin()  -> any {
 
     async def gen_summary()  -> str {
         setLoading(true);
+        setSummary("");
+
         summ = root spawn summerize(range_option=range);
         result = summ.reports[0];
+
         setSummary(result["summary"]);
         setLoading(false);
     }
