@@ -1,21 +1,84 @@
-/* cardbasestyles */
+/* ========= CUSTOMER PAGE LAYOUT + BACKGROUND ========= */
+
+.customer-page {
+  min-height: 100vh;
+  padding: 32px;
+  box-sizing: border-box;
+
+  /* 🔥 background image for customer dashboard */
+  background-image: url("/image_a.jpg");  /* or /static/customer.jpg if you use a different file */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Dark overlay over the photo */
+.customer-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);  /* adjust 0.3–0.5 for lighter/darker */
+  z-index: 1;
+}
+
+/* Main column holding header + cards */
+.customer-column {
+  position: relative;
+  z-index: 2;           /* sits above overlay */
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ========= TOP PORTAL SECTION ========= */
+
+.customer-header {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.customer-header-container {
+  width: 100%;
+  text-align: center;         
+  padding: 40px 0;            
+  position: relative;
+  z-index: 2;                 
+}
+
+.customer-hero-title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.customer-hero-subtitle {
+  font-size: 16px;
+  color: #e5e7eb;
+  margin-top: 10px;
+}
+
+/* ========= CARD STYLES ========= */
 
 .cardbase-style {
-  background-color: #020617;
+  background-color: rgba(2, 6, 23, 0.95);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
   box-sizing: border-box;
-
-  
-  width: 50%;          
-  max-width: 1200px;   
-  margin: 0 auto 24px; 
 }
 
-
 /* sectionTitleStyle */
-
 .section-title {
   font-size: 20px;
   font-weight: 700;
@@ -24,7 +87,6 @@
 }
 
 /* sectionSubtitleStyle */
-
 .section-subtitle {
   font-size: 13px;
   color: #9ca3af;
@@ -83,7 +145,6 @@
   margin-top: 16px;
 }
 
-
 /* Box that shows the auto reply */
 .auto-reply-box {
   border-radius: 12px;
@@ -98,7 +159,8 @@
   box-sizing: border-box;
 }
 
-/* Layout for the whole app */
+/* ========= (Optional) old app layout styles – safe to keep ========= */
+
 .app-container {
   min-height: 100vh;
   padding: 32px;
@@ -110,11 +172,9 @@
 
 .app-layout {
   width: 50%;
-  max-width: 1200px;    
-  margin: 0 auto;       
-  
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 24px;
 }
-
