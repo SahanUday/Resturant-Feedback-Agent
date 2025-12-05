@@ -46,8 +46,7 @@ Resturant-Feedback-Agent/
 
 ### 1. Clone the Jaseci Repository
 
-First, clone the main Jaseci repository which contains JAC and JAC-Scale:
-
+First, clone the repository:
 ```bash
 git clone https://github.com/SahanUday/Resturant-Feedback-Agent.git
 cd Resturant-Feedback-Agent
