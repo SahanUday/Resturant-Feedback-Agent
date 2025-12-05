@@ -1,7 +1,6 @@
 import from byllm.lib { Model }
-import os, csv;
 import from datetime { date, timedelta, datetime }
-import pandas as pd;
+
 
 glob llm = Model(model_name="gemini/gemini-2.5-flash");
 
