@@ -1,5 +1,17 @@
 cl import from react { useState }
 
+cl def CustomerHeaderSection() -> any {
+    return <div className="customer-header-container">
+        <h2 className="customer-hero-title">
+            Customer Feedback Portal
+        </h2>
+        <p className="customer-hero-subtitle">
+            Tell us about your dining or delivery experience so we can keep improving our food, service, and overall experience for you.
+        </p>
+    </div>;
+}
+
+
 cl def ReviewInputCard(props: any) -> any {
     return <div className="cardbase-style">
         <h2 className="section-title">
@@ -51,3 +63,4 @@ cl def AutoReplyCard(props: any) -> any {
         </div>
     </div>;
 }
+
