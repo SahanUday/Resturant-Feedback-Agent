@@ -3,14 +3,12 @@
 .page-home {
   min-height: 100vh;
   margin: 0;
-
-  /* Background image here */
   background-image: url("./image.jpg");   
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-  /* Dark overlay using a pseudo-element */
+
   position: relative;
   display: flex;
   justify-content: center;
@@ -28,7 +26,7 @@
   z-index: 1;
 }
 
-/* All content stays above the overlay */
+
 .container-home {
   position: relative;
   z-index: 2;
@@ -42,10 +40,6 @@
   gap: 32px;
 }
 
-
-/* ============================
-   TEXT STYLES
-============================ */
 
 .title-home {
   font-size: 40px;
@@ -68,9 +62,6 @@
 }
 
 
-/* ============================
-   CARDS LAYOUT + STYLES
-============================ */
 
 .cards-row-home {
   display: flex;
@@ -83,7 +74,7 @@
   flex: 1;
   min-width: 260px;
   max-width: 320px;
-  background-color: rgba(2, 6, 23, 0.85); /* slightly transparent for blending */
+  background-color: rgba(2, 6, 23, 0.85); 
   border-radius: 18px;
   border: 1px solid #1f2937;
   padding: 20px 18px;
