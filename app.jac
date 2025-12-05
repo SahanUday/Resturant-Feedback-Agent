@@ -4,7 +4,7 @@ import from datetime { date, timedelta, datetime }
 
 cl import from .components.AdminDashboard { SentimentBarChart, StatCard, StatsRow, SummaryCard, SuggestionsCard }
 cl import from .components.HomePage { Home }
-cl import from .components.customerdashboard { ReviewInputCard, AutoReplyCard }
+cl import from .customerdashboard { ReviewInputCard, AutoReplyCard, CustomerHeaderSection }
 
 glob llm = Model(model_name="gemini/gemini-2.5-flash");
 
