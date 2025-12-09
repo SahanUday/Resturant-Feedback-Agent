@@ -86,9 +86,6 @@ pip install byllm
 # Install all npm packages (React, Recharts, React Router, etc.)
 npm install
 ```
-```
-npm install recharts
-```
 
 ### 5. Set Up Environment Variables
 
