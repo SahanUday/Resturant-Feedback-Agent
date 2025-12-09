@@ -33,9 +33,12 @@ Resturant-Feedback-Agent/
 │   ├── AdminDashboard.jac      # Admin dashboard React components
 │   ├── customerdashboard.jac   # Customer portal React components
 │   └── HomePage.jac            # Home page component with portal selection
-├── adstyles.css               # Admin dashboard styles
-├── cstyles.css                # Customer portal styles
-├── homestyle.css              # Home page styles
+├── assets/
+|   └── styles/
+|      ├── adstyles.css          # Admin dashboard styles
+|      ├── cstyles.css           # Customer portal styles
+|      └── homestyle.css         # Home page styles
+|   └── images/
 └── README.md                 # Project documentation
 ```
 
