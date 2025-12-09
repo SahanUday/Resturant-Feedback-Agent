@@ -1,12 +1,10 @@
 node_modules
-app.session.bak
-app.session.dat
-app.session.dir
-app.session.users.json
-feedback_dataset.csv
-*.csv
-scr/*
+build/
+scr/
+compiled/
+dist/
 .env
 anchor_store.db.bak
 anchor_store.db.dat
 anchor_store.db.dir
+app.session.users.json

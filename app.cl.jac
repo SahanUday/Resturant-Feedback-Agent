@@ -1,9 +1,9 @@
 cl import from react { useState, useEffect }
 cl import from "@jac-client/utils" { Router, Routes, Route, Link, Navigate, useNavigate}
 
-import ".cstyles.css";
-import ".adstyles.css";
-import ".homestyle.css";
+import ".styles/cstyles.css";
+import ".styles/adstyles.css";
+import ".styles/homestyle.css";
 
 def Customer -> any {
     let [answer, setAnswer] = useState("");
