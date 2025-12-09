@@ -1,6 +1,7 @@
 # Restaurant Feedback Agent
 
 An intelligent restaurant feedback management system built with Jac-Lang that automatically analyzes customer reviews, generates automated responses, and provides actionable insights for restaurant management.
+<img width="1364" height="602" alt="image" src="https://github.com/user-attachments/assets/7bbff7ef-ebfb-4e26-a480-498acb34f9d6" />
 
 ## Features
 
@@ -85,9 +86,6 @@ pip install byllm
 ```bash
 # Install all npm packages (React, Recharts, React Router, etc.)
 npm install
-```
-```
-npm install recharts
 ```
 
 ### 5. Set Up Environment Variables
